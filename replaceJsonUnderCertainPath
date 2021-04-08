@@ -1,0 +1,17 @@
+import os, json
+data_extract_path = ""
+data_save_path = ""
+number_of_file = 0
+
+for file_name in [file for file in os.listdir(data_extract_path) if file.endswith('.json')]:
+  with open(data_extract_path + file_name, encoding='UTF-8')as json_file:
+    data = json.load(json_file)
+    data_string = json.dumps(data)
+    data_replace= data_string.replace("en-US","ko-KR")
+    data_dict = json.loads(data_replace)
+    
+    with oepn(data_save_path+file.name,'w',encoding='UTF-8') as json_save:
+      json.dump(data_dict,json_save,ensure_ascii=False,indent=4)
+      number_of_file+=1
+      
+print(number_of_file)
